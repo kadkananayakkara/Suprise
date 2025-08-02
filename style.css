@@ -1,0 +1,1394 @@
+/*
+ * Global Styles
+ * These styles apply to the entire page and set the foundational look.
+ * Aiming for a soft, romantic, anime-inspired aesthetic.
+ */
+:root {
+    --primary-pink: #ff69b4; /* Hot Pink */
+    --light-pink: #ffe8f0;   /* Very Light Pink */
+    --soft-pink: #f7e0e4;    /* Soft Background Pink */
+    --dark-text: #333;       /* Dark Grey for Text */
+    --light-text: #666;      /* Lighter Grey for secondary text */
+    --white: #fff;           /* Pure White */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --shadow-strong: rgba(0, 0, 0, 0.3);
+    --border-radius-sm: 8px;
+    --border-radius-md: 15px;
+    --border-radius-lg: 20px;
+    --transition-speed: 0.3s;
+    --transition-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth cubic bezier */
+}
+
+/* Basic reset and body styling for full screen, centered content, and smooth transitions */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, var(--soft-pink) 0%, var(--light-pink) 100%); /* Subtle gradient background */
+    color: var(--dark-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    width: 100vw;  /* Ensure body takes full viewport width */
+    text-align: center;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+    box-sizing: border-box;
+    transition: background var(--transition-speed) ease-in-out; /* Smooth background transitions */
+}
+
+/* Preloader styles */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--soft-pink) 0%, var(--light-pink) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid var(--primary-pink); /* Pink */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#preloader p {
+    font-size: 1.5rem;
+    color: var(--dark-text);
+    animation: fadeInOut 2s infinite alternate;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Hidden app state before preloader finishes */
+.hidden-app {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Main application container - the central card */
+#app {
+    width: 95vw; /* Almost full viewport width */
+    min-height: 95vh; /* Ensure app takes at least full viewport height */
+    max-width: 800px; /* Re-added max-width for better readability on very wide screens */
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg); /* Large rounded corners */
+    box-shadow: 0 15px 30px var(--shadow-medium); /* Deeper shadow for prominence */
+    padding: 20px; /* Adjusted padding for full screen layout */
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Distribute content vertically */
+    align-items: center;
+    overflow-y: auto; /* Allow app content to scroll if it overflows its own height */
+    overflow-x: hidden; /* Prevent horizontal scroll within app */
+    border: 2px solid var(--primary-pink); /* A subtle border */
+    margin: 2.5vh auto; /* Center vertically and horizontally if not full height */
+    transition: opacity 1s ease-in-out; /* Fade in the app after preloader */
+}
+
+/* Background floating elements */
+.background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0; /* Ensure they are behind content */
+}
+
+.heart-particle, .star-particle, .bubble-particle {
+    position: absolute;
+    opacity: 0.6;
+    animation: floatUp 15s infinite ease-in-out alternate;
+}
+
+.heart-particle {
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-pink);
+    transform: rotate(-45deg);
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+}
+.heart-particle::before, .heart-particle::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-pink);
+    border-radius: 50%;
+}
+.heart-particle::before { top: -10px; left: 0; }
+.heart-particle::after { top: 0; left: 10px; }
+
+.heart-particle-1 { top: 10%; left: 5%; animation-duration: 18s; animation-delay: 0s; }
+.heart-particle-2 { top: 30%; left: 20%; animation-duration: 16s; animation-delay: 3s; }
+.heart-particle-3 { top: 50%; left: 80%; animation-duration: 20s; animation-delay: 6s; }
+.heart-particle-4 { top: 70%; left: 40%; animation-duration: 17s; animation-delay: 9s; }
+
+.star-particle {
+    width: 15px;
+    height: 15px;
+    background-color: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: floatUp 20s infinite ease-in-out alternate, rotateStar 10s linear infinite;
+}
+.star-particle-1 { top: 20%; left: 90%; animation-duration: 22s; animation-delay: 1s; }
+.star-particle-2 { top: 60%; left: 10%; animation-duration: 19s; animation-delay: 7s; }
+.star-particle-3 { top: 85%; left: 55%; animation-duration: 25s; animation-delay: 12s; }
+
+.bubble-particle {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(173, 216, 230, 0.5); /* Light blue, semi-transparent */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.8);
+    animation: floatUp 18s infinite ease-in-out alternate, scaleBubble 8s infinite alternate;
+}
+.bubble-particle-1 { top: 5%; left: 70%; animation-duration: 16s; animation-delay: 2s; }
+.bubble-particle-2 { top: 40%; left: 30%; animation-duration: 20s; animation-delay: 8s; }
+.bubble-particle-3 { top: 75%; left: 15%; animation-duration: 17s; animation-delay: 10s; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(-50px) translateX(10px) rotate(180deg); opacity: 0.8; }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); opacity: 0.6; }
+}
+
+@keyframes rotateStar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes scaleBubble {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+    opacity: 0 !important; /* Ensure hidden elements are fully transparent */
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/*
+ * Progress Bar Styling
+ * Visually indicates the user's journey progress.
+ */
+#progress-bar {
+    width: 95%; /* Slightly less than 100% to fit within padding */
+    height: 12px; /* Slightly thicker */
+    background-color: #f0f0f0;
+    border-radius: 6px; /* More rounded */
+    margin-bottom: 25px; /* More space below */
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px var(--shadow-light); /* Inner shadow for depth */
+    flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #ff99cc, var(--primary-pink)); /* Gradient for progress */
+    border-radius: 6px;
+    transition: width 0.7s var(--transition-cubic); /* Smoother, more dynamic transition */
+    box-shadow: 0 0 8px rgba(255, 105, 180, 0.6); /* Subtle glow effect */
+}
+
+/*
+ * Step Transitions
+ * Animations for when a new step appears.
+ */
+.step {
+    flex-grow: 1; /* Allows step content to expand */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    animation: slideInFromRight 0.8s ease-out forwards; /* New animation for steps */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateX(100%); /* Start off-screen to the right */
+    min-height: calc(95vh - 100px); /* Ensure a minimum height for steps, considering progress bar/padding */
+    position: relative; /* For correct positioning of step-content-wrapper */
+}
+
+/* Wrapper for content within each step to apply animations */
+.step-content-wrapper {
+    width: 100%;
+    max-width: 700px; /* Constrain content width */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInScale 0.8s var(--transition-cubic) forwards;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInFromRight {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0%); }
+}
+
+/*
+ * Common Element Styling
+ */
+h1, h2, h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Subtle text shadow */
+}
+
+h2.question {
+    font-size: 28px; /* Larger question font */
+    font-weight: 700;
+    color: var(--primary-pink);
+    text-shadow: 1px 1px 3px rgba(255, 105, 180, 0.3); /* Enhanced text shadow */
+    line-height: 1.4; /* Better readability */
+}
+
+/*
+ * Character & Dialogue Styling
+ */
+.character-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align characters to the bottom */
+    margin-bottom: 25px; /* More space below characters */
+    position: relative;
+    min-height: 120px; /* Minimum height for consistent spacing */
+    width: 100%;
+}
+
+/* Specific styling for character-container when two characters are present (Abhishek + Unicorn) */
+.character-container.two-chars {
+    height: 180px; /* Adjusted height for side-by-side characters */
+    align-items: center; /* Center them vertically within their container */
+}
+
+.dialog-box {
+    background-color: var(--white);
+    border: 2px solid var(--primary-pink);
+    border-radius: var(--border-radius-md);
+    padding: 18px; /* More padding */
+    margin-bottom: 25px; /* Consistent margin */
+    width: 85%; /* Wider dialogue box */
+    max-width: 450px; /* Increased max-width */
+    font-style: italic;
+    font-size: 19px; /* Slightly larger font */
+    box-shadow: 0 8px 15px var(--shadow-light); /* Enhanced shadow */
+    z-index: 10;
+    box-sizing: border-box;
+    position: relative; /* For speech bubble arrow */
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; /* Pop-in animation */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Speech bubble arrow */
+.dialog-box::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position below the box */
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background-color: var(--white);
+    border-right: 2px solid var(--primary-pink);
+    border-bottom: 2px solid var(--primary-pink);
+    z-index: 9;
+}
+
+/* Pop-in animation for dialogue boxes */
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.cartoon-char {
+    height: 110px; /* Slightly larger character size */
+    object-fit: contain;
+    margin: 0 15px; /* More space between characters */
+    filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.2)); /* Subtle shadow for characters */
+    animation: floatAndBreathe 3s ease-in-out infinite alternate; /* Gentle floating/breathing animation */
+}
+
+/* Animation for gentle floating/breathing */
+@keyframes floatAndBreathe {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-5px) scale(1.01); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+/*
+ * Quiz Options Styling
+ */
+.quiz-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Larger minimum size for images */
+    gap: 25px; /* More space between images */
+    margin-top: 30px;
+    width: 100%;
+    max-width: 700px; /* Wider quiz options area */
+}
+
+/* For 2x2 grid layout */
+.quiz-options.square-grid {
+    grid-template-columns: repeat(2, 1fr); /* Force 2 columns */
+    max-width: 450px; /* Adjust max-width to make it more square */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quiz-option-card {
+    background-color: var(--light-pink);
+    border-radius: var(--border-radius-md);
+    padding: 15px;
+    cursor: pointer;
+    border: 4px solid transparent;
+    transition: all var(--transition-speed) var(--transition-cubic);
+    box-shadow: 0 5px 10px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* Ensure cards have a minimum height */
+    position: relative; /* For label positioning */
+}
+
+.quiz-option-card img {
+    width: 100%;
+    max-height: 150px; /* Limit image height within card */
+    object-fit: contain; /* Use contain to show whole image */
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 10px;
+    border: 2px solid var(--white); /* Inner white border for image */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.quiz-option-card .option-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-pink);
+    margin-top: auto; /* Push label to bottom if content varies */
+}
+
+.quiz-option-card:hover {
+    transform: translateY(-5px) scale(1.03); /* Lift and slightly scale */
+    box-shadow: 0 10px 20px var(--shadow-medium);
+    border-color: #ff99cc; /* Light pink border on hover */
+}
+
+.quiz-option-card.selected {
+    border: 4px solid var(--primary-pink);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 25px rgba(255, 105, 180, 0.5);
+    transform: scale(1.05);
+    background: linear-gradient(180deg, var(--light-pink), var(--primary-pink) 80%); /* Gradient on selection */
+    color: var(--white); /* Change text color on selection */
+}
+
+.quiz-option-card.selected .option-label {
+    color: var(--white); /* Ensure label also changes color */
+}
+
+/* Sparkle effect on correct answer */
+.quiz-option-card.correct-sparkle::after {
+    content: '✨'; /* Unicode sparkle emoji */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 3em;
+    animation: sparklePop 0.6s ease-out forwards;
+}
+
+@keyframes sparklePop {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+.selection-hint {
+    font-size: 0.9em;
+    color: var(--light-text);
+    margin-top: 10px;
+    font-style: italic;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/*
+ * Text Input & Button Styling (for Rapunzel quiz)
+ */
+.text-input-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Wider input container */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.text-input-container input {
+    padding: 15px; /* More padding */
+    border-radius: var(--border-radius-sm);
+    border: 2px solid var(--light-pink); /* Light pink border */
+    font-size: 20px; /* Larger font size */
+    width: 65%; /* Adjusted width */
+    margin-right: 15px; /* More margin */
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    box-shadow: inset 0 1px 3px var(--shadow-light);
+}
+
+.text-input-container input:focus {
+    border-color: var(--primary-pink); /* Hot pink border on focus */
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.4); /* Glow on focus */
+}
+
+.action-button { /* General button style */
+    padding: 15px 30px; /* Larger padding */
+    background: linear-gradient(45deg, var(--primary-pink), #ff99cc); /* Gradient button */
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 20px; /* Larger font size */
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 5px 10px var(--shadow-medium); /* Stronger shadow */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px;
+    font-weight: bold;
+    border: 2px solid var(--white); /* White border */
+}
+
+.action-button:hover {
+    background: linear-gradient(45deg, #e652a2, #ff7ab8); /* Darker gradient on hover */
+    transform: translateY(-3px) scale(1.02); /* More pronounced lift and slight scale */
+    box-shadow: 0 8px 15px var(--shadow-strong);
+}
+
+.action-button.small-button {
+    padding: 12px 25px;
+    font-size: 18px;
+}
+
+/*
+ * Video Player Styling
+ */
+.video-step-content {
+    background-color: #000; /* Black background for video steps */
+    border-radius: var(--border-radius-lg);
+    padding: 0; /* Remove padding as video fills container */
+    box-shadow: 0 15px 30px var(--shadow-strong);
+    overflow: hidden; /* Ensure video corners are rounded */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    min-height: 400px; /* Min height for video container */
+}
+
+.video-player-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#video-1, #video-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure video fits within bounds */
+    border: none; /* Remove default video borders */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.video-player-container:hover .video-overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+.video-caption {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-style: normal; /* Override dialog-box italic */
+    font-weight: bold;
+    color: var(--primary-pink);
+    background-color: var(--white);
+    padding: 10px 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 5px 10px var(--shadow-light);
+    border: 2px solid var(--primary-pink);
+}
+
+
+/*
+ * Final Message Styling
+ */
+.final-message-container {
+    text-align: center;
+    padding: 30px; /* More padding */
+    width: 100%;
+    flex-grow: 1; /* Allow it to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.final-message-box {
+    background-color: var(--white);
+    border: 3px solid var(--primary-pink); /* Thicker border */
+    border-radius: var(--border-radius-lg);
+    padding: 40px; /* More padding */
+    text-align: left;
+    box-shadow: 0 10px 25px var(--shadow-strong); /* Very strong shadow */
+    max-width: 700px; /* Wider message box */
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /* For subtle background effects */
+    background: linear-gradient(180deg, var(--white) 0%, var(--light-pink) 100%); /* Subtle gradient background */
+}
+
+/* Decorative border effect for final message box */
+.final-message-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius-lg);
+    border: 5px dashed #ff99cc; /* Dashed border for a cute look */
+    pointer-events: none;
+    animation: rotateBorder 10s linear infinite; /* Rotating border animation */
+}
+
+@keyframes rotateBorder {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.final-message-box p {
+    font-size: 18px; /* Larger font size */
+    line-height: 1.7; /* Increased line spacing */
+    margin: 15px 0;
+    color: var(--light-text);
+}
+
+.final-message-box h2 {
+    color: var(--primary-pink);
+    font-size: 32px; /* Larger heading */
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.4); /* Stronger text shadow */
+}
+
+.final-char {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px; /* More space below characters */
+}
+
+.final-char img {
+    height: 150px; /* Larger size for final characters */
+    margin: 0 15px; /* More space between them */
+    border-radius: 50%; /* Circular images */
+    box-shadow: 0 5px 15px var(--shadow-medium);
+    border: 3px solid var(--light-pink); /* Light border for characters */
+    transition: transform 0.3s ease-in-out;
+}
+.final-char img:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+/*
+ * NEW: Step 0 (Initial Greeting) Styles
+ */
+.initial-greeting {
+    font-size: 4rem; /* Very large font for greeting */
+    color: var(--primary-pink);
+    margin-bottom: 40px;
+    text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5); /* Stronger shadow */
+    animation: pulse 2s infinite alternate, sparkleText 1.5s infinite alternate; /* Combined animations */
+    letter-spacing: 2px;
+}
+
+/* Pulse animation for greeting */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.05); opacity: 0.9; }
+}
+
+/* Sparkle text animation */
+@keyframes sparkleText {
+    0%, 100% { text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.5); }
+    50% { text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.8), 3px 3px 6px rgba(255, 105, 180, 0.5); }
+}
+
+.heart-icon-container {
+    font-size: 6rem; /* Huge heart */
+    cursor: pointer;
+    color: var(--primary-pink);
+    animation: bounce 2s infinite, glowHeart 1.5s infinite alternate; /* Combined animations */
+    margin-bottom: 30px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+    transition: transform 0.1s ease-out; /* For quick press feedback */
+}
+
+/* Heart bounce animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-30px); }
+    60% { transform: translateY(-15px); }
+}
+
+/* Heart glow animation */
+@keyframes glowHeart {
+    0%, 100% { text-shadow: 0 0 5px rgba(255, 105, 180, 0.5), 0 0 10px rgba(255, 105, 180, 0.3); }
+    50% { text-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 25px rgba(255, 105, 180, 0.6); }
+}
+
+/* Heart click effect */
+.heart-icon-container:active {
+    transform: scale(0.9); /* Shrink slightly on click */
+}
+
+/* Click prompt text */
+.click-prompt {
+    font-size: 1.2rem;
+    color: var(--light-text);
+    margin-top: 10px;
+    animation: fadeInOut 2s infinite alternate;
+}
+
+/*
+ * Custom Message Display (for quiz feedback)
+ */
+.temp-message {
+    position: absolute;
+    bottom: 40px; /* Higher position */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-pink); /* Pink background */
+    color: var(--white);
+    padding: 15px 30px; /* More padding */
+    border-radius: var(--border-radius-md);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    font-size: 18px; /* Larger font */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Stronger shadow */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/*
+ * NEW: Memory Lane Gallery (Step 1.5) - Now uses flip-card styling
+ */
+.memory-lane-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 30px;
+}
+
+/* Styles for the flip-cards within memory lane */
+.memory-card {
+    height: 220px; /* Adjusted height for memory cards to accommodate image and text */
+}
+
+.memory-card .flip-card-front,
+.memory-card .flip-card-back {
+    border: 2px solid var(--primary-pink);
+    background-color: var(--light-pink);
+    color: var(--primary-pink);
+}
+
+.memory-card .flip-card-back {
+    background-color: var(--primary-pink);
+    color: var(--white);
+}
+
+.memory-card .flip-card-back img {
+    max-height: 150px; /* Ensure image fits */
+    width: auto; /* Allow width to scale with height */
+    object-fit: contain;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 5px;
+}
+
+.memory-card .memory-caption-back {
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--white);
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+/*
+ * NEW: Love Language Challenge (Step 2.5)
+ */
+.love-language-challenge {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align columns to top */
+    gap: 40px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 700px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.challenge-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    min-width: 150px; /* Ensure columns don't get too small */
+}
+
+.draggable-icons-container {
+    order: 1; /* Order for flexbox */
+}
+
+.drop-targets-container {
+    order: 2; /* Order for flexbox */
+}
+
+.draggable-icon {
+    background-color: var(--light-pink);
+    border: 2px solid var(--primary-pink);
+    border-radius: var(--border-radius-md);
+    padding: 15px;
+    cursor: grab;
+    box-shadow: 0 5px 10px var(--shadow-light);
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    font-weight: bold;
+    color: var(--primary-pink);
+}
+
+.draggable-icon img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.draggable-icon.dragging {
+    opacity: 0.7;
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px var(--shadow-medium);
+}
+
+.drop-target {
+    background-color: var(--white);
+    border: 2px dashed var(--light-pink);
+    border-radius: var(--border-radius-md);
+    padding: 15px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--light-text);
+    transition: all var(--transition-speed) ease;
+    text-align: center;
+}
+
+.drop-target.hovered {
+    background-color: #ffeff5; /* Lighter pink when dragged over */
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+.drop-target.correct {
+    background-color: #d4edda; /* Greenish for correct */
+    border-color: #28a745;
+    color: #28a745;
+    animation: popIn 0.5s ease;
+    cursor: default; /* Change cursor after correct drop */
+}
+
+/*
+ * NEW: Quirks & Charms (Step 3.5)
+ */
+.quirks-charms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 30px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 180px;
+    perspective: 1000px; /* 3D effect */
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 5px 15px var(--shadow-light);
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid var(--primary-pink);
+}
+
+.flip-card-front {
+    background-color: var(--light-pink);
+    color: var(--primary-pink);
+}
+
+.flip-card-back {
+    background-color: var(--primary-pink);
+    color: var(--white);
+    transform: rotateY(180deg);
+}
+
+.flip-card-front h3, .flip-card-back h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+.flip-card-front p, .flip-card-back p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/*
+ * NEW: Dream Board (Step 4.5)
+ */
+.dream-board-map {
+    position: relative; /* Crucial for absolute positioning of children */
+    width: 100%;
+    max-width: 600px;
+    margin-top: 30px;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 20px var(--shadow-medium);
+    /* Ensure enough space for the image to display without pushing elements */
+    min-height: 400px; /* Adjust based on your map image aspect ratio */
+    display: flex; /* Use flex to center map image */
+    justify-content: center;
+    align-items: center;
+    background-color: transparent; /* Removed white background */
+    border: none; /* Removed pink border */
+    z-index: 21; /* Ensure map is above stars */
+}
+
+.dream-map-image {
+    width: 100%;
+    height: 100%; /* Fill the map container */
+    object-fit: cover; /* Cover the area, cropping if necessary for the base map */
+    display: block;
+    border-radius: var(--border-radius-lg);
+}
+
+.dream-point {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: gold;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: pulseGlow 1.5s infinite alternate;
+    transition: transform 0.2s ease;
+    z-index: 22; /* Ensure points are above map and stars */
+}
+
+.dream-point:hover {
+    transform: scale(1.2);
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 215, 0, 0.6); }
+}
+
+/* Positioning for specific dream points (adjust based on your map image) */
+.dream-point.point-1 { top: 15%; left: 20%; }
+.dream-point.point-2 { top: 40%; left: 70%; }
+.dream-point.point-3 { top: 70%; left: 30%; }
+.dream-point.point-4 { top: 25%; left: 55%; }
+.dream-point.point-5 { top: 85%; left: 80%; }
+.dream-point.point-6 { top: 50%; left: 15%; } /* New point */
+.dream-point.point-7 { top: 10%; left: 45%; } /* New point */
+
+/* The dream bubble pop-up container */
+.dream-image-wrapper {
+    position: absolute; /* Positioned relative to its parent `.dream-board-map` */
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -100%); /* Start off-screen above the map */
+    z-index: 23; /* Ensure bubble is above points and stars */
+
+    background: transparent; /* Make the background transparent */
+    backdrop-filter: blur(0px); /* Remove blur as background is transparent */
+    border-radius: var(--border-radius-lg); /* Rounded rectangle bubble */
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    padding: 0; /* Remove padding */
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none; /* Remove shadow */
+
+    border: none; /* Remove border */
+    opacity: 0; /* Start hidden for animation */
+    pointer-events: none;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* New animations for sliding from the top */
+@keyframes slideInFromTop {
+    from { opacity: 0; transform: translate(-50%, -100%); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes slideOutToTop {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, -100%); }
+}
+
+/* Ensure the wrapper is visible and interactive when 'show' class is added */
+.dream-image-wrapper.show {
+    opacity: 1;
+    pointer-events: auto;
+    animation: slideInFromTop 0.5s var(--transition-cubic) forwards;
+}
+
+/* Animation for image sinking out */
+.dream-image-wrapper.hide-animation {
+    animation: slideOutToTop 0.5s ease-in forwards;
+}
+
+.dream-image-display {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain; /* Ensures the entire image is visible, not cropped */
+    border-radius: var(--border-radius-md);
+    /* If the image should have rounded corners without a background,
+       ensure the image itself has transparency in the corners */
+}
+
+.dream-caption {
+    position: absolute; /* Position the caption below the image pop-up */
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-pink);
+    border: 2px solid var(--light-pink);
+    padding: 15px 25px;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 5px 10px var(--shadow-light);
+    z-index: 22; /* Ensure caption is above stars */
+}
+
+
+/*
+ * NEW: Why I Love You (Step 5.5)
+ */
+#love-reason-display {
+    min-height: 100px; /* Ensure space for message */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-pink);
+    background-color: var(--light-pink);
+    border: 2px solid var(--primary-pink);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/*
+ * NEW: Promise Wall (Step 6.5)
+ */
+.promise-wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+    margin-top: 30px;
+    min-height: 250px; /* Ensure space for notes to appear */
+    position: relative;
+    background-color: #f0f0f0; /* Light background for the wall */
+    border-radius: var(--border-radius-lg);
+    padding: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.promise-note {
+    background-color: #fffacd; /* Light yellow for sticky note */
+    border: 1px solid #e0c068;
+    border-radius: 5px;
+    padding: 15px;
+    font-family: 'Indie Flower', cursive; /* A more handwritten font if available */
+    font-size: 1.1rem;
+    text-align: left;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    position: absolute; /* Absolute positioning for scattered notes */
+    opacity: 0;
+    animation: popInRotate 0.8s ease-out forwards;
+    transform: scale(0.8) rotate(0deg);
+}
+
+@keyframes popInRotate {
+    0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+    70% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Specific positioning and rotation for each note (will be set by JS) */
+/* Example:
+.promise-note-1 { top: 10%; left: 5%; transform: rotate(-5deg); animation-delay: 0.2s; }
+.promise-note-2 { top: 30%; right: 10%; transform: rotate(8deg); animation-delay: 0.5s; }
+*/
+
+
+/*
+ * Responsive Adjustments (Media Queries)
+ * Ensuring the design adapts beautifully to different screen sizes.
+ */
+
+/* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+    #app {
+        width: 98vw;
+        min-height: 98vh; /* Adjusted to min-height */
+        padding: 15px;
+    }
+    h2.question {
+        font-size: 24px;
+    }
+    .dialog-box {
+        font-size: 17px;
+        padding: 15px;
+        max-width: 350px;
+    }
+    .cartoon-char {
+        height: 90px;
+    }
+    .character-container.two-chars {
+        height: 120px;
+    }
+    .quiz-options {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 20px;
+    }
+    .quiz-options.square-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .quiz-option-card {
+        min-height: 180px;
+    }
+    .quiz-options img {
+        border-width: 2px; /* Thinner border on mobile */
+    }
+    .text-input-container input,
+    .action-button {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+    .initial-greeting {
+        font-size: 3.5rem;
+    }
+    .heart-icon-container {
+        font-size: 5rem;
+    }
+    #start-adventure-button {
+        font-size: 20px;
+        padding: 15px 30px;
+    }
+    .final-message-box {
+        padding: 30px;
+        max-width: 600px;
+    }
+    .final-message-box h2 {
+        font-size: 28px;
+    }
+    .final-message-box p {
+        font-size: 16px;
+    }
+    .video-step-content {
+        min-height: 350px;
+    }
+    .memory-lane-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .gallery-image {
+        height: 120px;
+    }
+    .draggable-icon, .drop-target {
+        width: 120px;
+        height: 120px;
+        padding: 10px;
+    }
+    .draggable-icon img {
+        width: 60px;
+        height: 60px;
+    }
+    .flip-card {
+        height: 160px;
+    }
+    .flip-card-front h3, .flip-card-back h3 {
+        font-size: 1.2rem;
+    }
+    .flip-card-front p, .flip-card-back p {
+        font-size: 0.9rem;
+    }
+    #love-reason-display {
+        font-size: 1.3rem;
+        min-height: 80px;
+    }
+    .promise-wall {
+        min-height: 200px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .promise-note {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    #app {
+        border-radius: 10px; /* Smaller border radius for mobile */
+        padding: 10px;
+        width: 98vw;
+        min-height: 98vh; /* Adjusted to min-height */
+    }
+    #progress-bar {
+        height: 8px;
+        margin-bottom: 15px;
+    }
+    h2.question {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .dialog-box {
+        font-size: 15px;
+        padding: 12px;
+        width: 90%;
+        max-width: none; /* Allow full width on small screens */
+    }
+    .cartoon-char {
+        height: 80px;
+        margin: 0 8px;
+    }
+    .character-container.two-chars {
+        height: 120px;
+    }
+    .quiz-options {
+        grid-template-columns: 1fr; /* Stack images vertically on mobile */
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .quiz-options.square-grid {
+        grid-template-columns: 1fr; /* Stack vertically on mobile for square grid */
+    }
+    .quiz-option-card {
+        min-height: 150px;
+    }
+    .quiz-options img {
+        border-width: 2px; /* Thinner border on mobile */
+    }
+    .text-input-container {
+        flex-direction: column; /* Stack input and button */
+    }
+    .text-input-container input {
+        width: 95%; /* Almost full width */
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+        padding: 10px;
+    }
+    .action-button {
+        width: 95%; /* Almost full width */
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    .video-step-content {
+        min-height: 300px;
+    }
+    #video-1, #video-2 {
+        max-height: 40vh; /* Adjusted max-height for videos on mobile */
+        border-width: 2px;
+    }
+    .final-message-box {
+        padding: 25px;
+        border-width: 2px;
+    }
+    .final-message-box h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    .final-message-box p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 10px 0;
+    }
+    .final-char img {
+        height: 100px;
+        margin: 0 8px;
+    }
+    .initial-greeting {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+    }
+    .heart-icon-container {
+        font-size: 4rem;
+        margin-bottom: 25px;
+    }
+    #start-adventure-button {
+        font-size: 18px;
+        padding: 12px 25px;
+        margin-top: 25px;
+    }
+    .temp-message {
+        font-size: 14px;
+        padding: 10px 15px;
+        bottom: 15px;
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    .initial-greeting {
+        font-size: 2rem;
+    }
+    .heart-icon-container {
+        font-size: 3.5rem;
+    }
+    .dialog-box {
+        font-size: 14px;
+    }
+    h2.question {
+        font-size: 18px;
+    }
+    .final-message-box h2 {
+        font-size: 20px;
+    }
+    .final-message-box p {
+        font-size: 13px;
+    }
+}

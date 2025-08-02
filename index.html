@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An Adventure for My Love</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="spinner"></div>
+      <p>Loading magic...</p>
+    </div>
+
+    <div id="app" class="hidden-app">
+      <div class="background-elements">
+        <div class="heart-particle heart-particle-1"></div>
+        <div class="heart-particle heart-particle-2"></div>
+        <div class="heart-particle heart-particle-3"></div>
+        <div class="heart-particle heart-particle-4"></div>
+        <div class="star-particle star-particle-1"></div>
+        <div class="star-particle star-particle-2"></div>
+        <div class="star-particle star-particle-3"></div>
+        <div class="bubble-particle bubble-particle-1"></div>
+        <div class="bubble-particle bubble-particle-2"></div>
+        <div class="bubble-particle bubble-particle-3"></div>
+      </div>
+
+      <div id="progress-bar">
+        <div id="progress"></div>
+      </div>
+
+      <div id="step-0" class="step current-step">
+        <div class="step-content-wrapper intro-page">
+          <h1 class="initial-greeting">Happy International Girlfriend Day!</h1>
+          <div class="heart-icon-container">
+            <span class="heart-icon" id="initial-heart">&#10084;&#65039;</span>
+          </div>
+          <p class="click-prompt">Click the heart to continue</p>
+        </div>
+      </div>
+
+      <div id="step-0-5" class="step hidden">
+        <div class="step-content-wrapper intro-page">
+          <p id="late-wish-message" class="dialog-box intro-dialog">
+            Oops! A little late, but my love for you is always on time. Sorry
+            for wishing late, my dearest Pawani!
+          </p>
+          <button id="start-adventure-button" class="action-button">
+            Start Your Adventure
+          </button>
+        </div>
+      </div>
+
+      <div id="step-1" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Welcome, my love! Our story begins with a memory... can you guess
+            which one?
+          </p>
+          <h2 class="question">
+            Do you remember the very first day we met? What's the one food that
+            brings back that memory?
+          </h2>
+          <div class="quiz-options food-quiz square-grid">
+            <div class="quiz-option-card">
+              <img
+                src="assets/achcharu.jpg"
+                data-answer="correct"
+                alt="Achcharu"
+              />
+              <span class="option-label">Achcharu</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/ice cream.jpg" alt="Ice Cream" />
+              <span class="option-label">Ice Cream</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/kottu.jpg" alt="Kottu" />
+              <span class="option-label">Kottu</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/rabuttan.jpg" alt="Rabutan" />
+              <span class="option-label">Rabutan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-1-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Every picture tells a story, and ours are my favorite!
+          </p>
+          <h2 class="question">
+            Click the cards to flip and relive some moments!
+          </h2>
+          <div class="memory-lane-gallery">
+            <div class="flip-card memory-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Our First Photo</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <img
+                    src="assets/first image.jpg"
+                    alt="1st photo we took together"
+                  />
+                  <p class="memory-caption-back">1st photo we took together</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card memory-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>First Day Out</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <img
+                    src="assets/first trip.jpg"
+                    alt="first dayout we went."
+                  />
+                  <p class="memory-caption-back">First day out we went.</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card memory-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Little Angry Bird</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <img src="assets/angry.jpg" alt="little angry bird" />
+                  <p class="memory-caption-back">My little angry bird</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card memory-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Thewatta Church</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <img src="assets/thewatta.jpg" alt="thewatta church" />
+                  <p class="memory-caption-back">At Thewatta church</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card memory-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>First Lecture</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <img src="assets/lecture.jpg" alt="First Lecture i came" />
+                  <p class="memory-caption-back">First Lecture I came</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card memory-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Youth Event</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <img src="assets/dome.jpg" alt="youth event" />
+                  <p class="memory-caption-back">At our youth event</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="next-memory-step" class="action-button hidden">
+            Continue Our Journey
+          </button>
+        </div>
+      </div>
+
+      <div id="step-2" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Now for a little secret. You know you're my favorite princess, but
+            do you remember the special name I saved you by?
+          </p>
+          <h2 class="question">
+            What's the special name I have for you in my phone contacts?
+          </h2>
+          <div class="text-input-container">
+            <input
+              type="text"
+              id="rapunzel-answer"
+              placeholder="Type your answer..."
+            />
+            <button id="rapunzel-submit" class="action-button small-button">
+              Submit
+            </button>
+          </div>
+          <div id="princess-quiz-2" class="hidden">
+            <h2 class="question">
+              In my world, there's only one real princess. Which of these is
+              her?
+            </h2>
+            <div class="quiz-options princess-quiz square-grid">
+              <div class="quiz-option-card">
+                <img src="assets/rapunzel.jpg" alt="Rapunzel" />
+                <span class="option-label">Rapunzel</span>
+              </div>
+              <div class="quiz-option-card">
+                <img src="assets/anna.jpg" alt="Anna" />
+                <span class="option-label">Anna</span>
+              </div>
+              <div class="quiz-option-card">
+                <img src="assets/elsa.jpg" alt="Elsa" />
+                <span class="option-label">Elsa</span>
+              </div>
+              <div class="quiz-option-card">
+                <img
+                  src="assets/pawani.jpg"
+                  data-answer="correct"
+                  alt="Pawani"
+                />
+                <span class="option-label">Pawani (The Real One!)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-2-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Time to see if you know our unique love languages!
+          </p>
+          <h2 class="question">Drag the icons to match the love languages!</h2>
+          <div class="love-language-challenge">
+            <div class="challenge-column draggable-icons-container">
+              <div class="draggable-icon" data-lang="biting">
+                <img src="assets/biting.jpg" alt="Biting Icon" />
+                <span>Playful Bites</span>
+              </div>
+              <div class="draggable-icon" data-lang="hugging">
+                <img src="assets/hugging.jpg" alt="Hugging Icon" />
+                <span>Warm Hugs</span>
+              </div>
+              <div class="draggable-icon" data-lang="kissing">
+                <img src="assets/kissing.jpg" alt="Kissing Icon" />
+                <span>Sweet Kisses</span>
+              </div>
+              <div class="draggable-icon" data-lang="gifting">
+                <img src="assets/gifting.jpg" alt="Gifting Icon" />
+                <span>Thoughtful Gifts</span>
+              </div>
+            </div>
+            <div class="challenge-column drop-targets-container">
+              <div class="drop-target" data-target="hugging">
+                <p>Warm Hugs</p>
+              </div>
+              <div class="drop-target" data-target="gifting">
+                <p>Thoughtful Gifts</p>
+              </div>
+              <div class="drop-target" data-target="biting">
+                <p>Playful Bites</p>
+              </div>
+              <div class="drop-target" data-target="kissing">
+                <p>Sweet Kisses</p>
+              </div>
+            </div>
+          </div>
+          <button id="love-language-continue" class="action-button hidden">
+            Next Sweet Moment
+          </button>
+        </div>
+      </div>
+
+      <div id="step-3" class="step hidden">
+        <div class="step-content-wrapper video-step-content">
+          <div class="video-player-container">
+            <video id="video-1" controls autoplay muted playsinline>
+              <source
+                src="assets/Cute_Anime_Juggling_Mishap_Romance.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay">Video playing...</div>
+          </div>
+          <p class="video-caption dialog-box">
+            you always been there for me...always!
+          </p>
+        </div>
+      </div>
+
+      <div id="step-3-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Time to celebrate all the little things that make you, YOU!
+          </p>
+          <h2 class="question">
+            Click the cards to reveal your adorable quirks and charms!
+          </h2>
+          <div class="quirks-charms-grid">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Your Superpower?</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Making me laugh even when I'm grumpy!</h3>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Favorite Fruit you like?</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Rabuttan</h3>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Your Secret Talent?</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Finding the comfiest spot on any couch!</h3>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>What brightens your day?</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <h3>A cute baby video (and maybe me too)!</h3>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Your Go-To Comfort?</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <h3>My arms, obviously!</h3>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h3>Best Listener?</h3>
+                  <p>Click to reveal!</p>
+                </div>
+                <div class="flip-card-back">
+                  <h3>You, always ready to hear me out.</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button id="quirks-continue" class="action-button hidden">
+            Onward to More Love!
+          </button>
+        </div>
+      </div>
+
+      <div id="step-4" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            They say love has five languages, but ours is a little more...
+            unique.
+          </p>
+          <h2 class="question">
+            Which of these is your special love language?
+          </h2>
+          <div class="quiz-options love-language-quiz square-grid">
+            <div class="quiz-option-card">
+              <img src="assets/hugging.jpg" alt="Hugging" />
+              <span class="option-label">Hugs</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/biting.jpg" data-answer="correct" alt="Biting" />
+              <span class="option-label">Playful Bites!</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/kissing.jpg" alt="Kissing" />
+              <span class="option-label">Kisses</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/gifting.jpg" alt="Gifting" />
+              <span class="option-label">Gifts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-4-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Our future is full of amazing adventures waiting to happen!
+          </p>
+          <h2 class="question">
+            Click on the stars to see some of our future dreams!
+          </h2>
+          <div class="dream-board-map">
+            <img
+              src="assets/dream_map_base.jpg"
+              alt="Dream Map"
+              class="dream-map-image"
+            />
+
+            <div id="dream-image-wrapper" class="dream-image-wrapper hidden">
+              <img
+                id="dream-image-display"
+                class="dream-image-display"
+                src=""
+                alt="A dream of our future"
+              />
+            </div>
+            <p id="dream-caption" class="dialog-box dream-caption hidden">
+              Click a star to reveal a dream!
+            </p>
+
+            <div
+              class="dream-point point-1"
+              data-image="travel to japan.png"
+              data-dream="Visiting Japan during cherry blossom season!"
+            ></div>
+            <div
+              class="dream-point point-2"
+              data-image="build our house.png"
+              data-dream="Building our cozy little home together."
+            ></div>
+            <div
+              class="dream-point point-3"
+              data-image="travel in our car.png"
+              data-dream="A spontaneous road trip to explore Sri Lanka!"
+            ></div>
+            <div
+              class="dream-point point-4"
+              data-image="have a cute baby.png"
+              data-dream="Having a baby together!"
+            ></div>
+            <div
+              class="dream-point point-5"
+              data-image="make food for you.png"
+              data-dream="Learning to cook your favorite dishes perfectly."
+            ></div>
+            <div
+              class="dream-point point-6"
+              data-image="watch movies.png"
+              data-dream="Watching all the anime series together, snuggled up."
+            ></div>
+            <div
+              class="dream-point point-7"
+              data-image="suprises for you.png"
+              data-dream="Celebrating your birthday, January 27, with a grand surprise every year!"
+            ></div>
+          </div>
+          <button id="dreams-continue" class="action-button hidden">
+            Next Chapter of Our Love
+          </button>
+        </div>
+      </div>
+
+      <div id="step-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <div class="character-container two-chars">
+            <img
+              src="assets/abhishek-cartoon.png"
+              alt="Abhishek Cartoon"
+              class="cartoon-char"
+            />
+            <img src="assets/unicorn.png" alt="Unicorn" class="cartoon-char" />
+          </div>
+          <p class="dialog-box">
+            My unicorn friend here has a question for his favorite human!
+          </p>
+          <h2 class="question">
+            Which magical creature does you think is the most beautiful in the
+            whole world?
+          </h2>
+          <div class="quiz-options unicorn-quiz square-grid">
+            <div class="quiz-option-card">
+              <img src="assets/dog.jpg" alt="Dog" />
+              <span class="option-label">Dog</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/cat.jpg" alt="Cat" />
+              <span class="option-label">Cat</span>
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/panda.jpg" alt="Panda" />
+              <span class="option-label">Panda</span>
+            </div>
+            <div class="quiz-option-card">
+              <img
+                src="assets/unicorn.jpg"
+                data-answer="correct"
+                alt="Unicorn"
+              />
+              <span class="option-label">Unicorn</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="step-5-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            There are countless reasons why I love you, but here are just a few!
+          </p>
+          <h2 class="question">
+            Click the button to reveal a reason why I love you!
+          </h2>
+          <button id="generate-love-reason" class="action-button">
+            Tell Me Why!
+          </button>
+          <p
+            id="love-reason-display"
+            class="dialog-box love-reason-display hidden"
+          ></p>
+          <button id="love-reason-continue" class="action-button hidden">
+            Keep Going!
+          </button>
+        </div>
+      </div>
+
+      <div id="step-6" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Okay, final question... and it's the most important one.
+          </p>
+          <h2 class="question">Who do you love most in this universe?</h2>
+          <div class="quiz-options final-love-quiz square-grid">
+            <div class="quiz-option-card">
+              <img src="assets/me 1.jpg" data-answer="1" alt="Abhishek 1" />
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/me 2.jpg" data-answer="2" alt="Abhishek 2" />
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/me 3.jpg" data-answer="3" alt="Abhishek 3" />
+            </div>
+            <div class="quiz-option-card">
+              <img src="assets/me 4.jpg" data-answer="4" alt="Abhishek 4" />
+            </div>
+          </div>
+          <p class="selection-hint">Click all of them, obviously!</p>
+        </div>
+      </div>
+
+      <div id="step-6-5" class="step hidden">
+        <div class="step-content-wrapper">
+          <p class="dialog-box">
+            Just a few little promises from my heart to yours...
+          </p>
+          <h2 class="question">Watch as my promises to you appear!</h2>
+          <button id="show-promises-button" class="action-button">
+            Show My Promises
+          </button>
+          <div class="promise-wall"></div>
+          <button id="promises-continue" class="action-button hidden">
+            Almost There!
+          </button>
+        </div>
+      </div>
+
+      <div id="step-7" class="step hidden">
+        <div class="step-content-wrapper video-step-content">
+          <div class="video-player-container">
+            <video id="video-2" controls autoplay muted playsinline>
+              <source
+                src="assets/Anime_Video_Generation.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay">Magical moments...</div>
+          </div>
+          <p class="video-caption dialog-box">
+            Our journey together is always a magical one!
+          </p>
+        </div>
+      </div>
+
+      <div id="step-8" class="step hidden final-message-container">
+        <div class="step-content-wrapper">
+          <div class="final-message-box">
+            <div class="character-container final-char">
+              <img
+                src="assets/abhishek-cartoon.png"
+                alt="Abhishek Cartoon"
+                class="cartoon-char"
+              />
+              <img
+                src="assets/pawani-cartoon.png"
+                alt="Pawani Cartoon"
+                class="cartoon-char"
+              />
+            </div>
+            <h2>My Lovely Sudu Nonah,</h2>
+            <p>
+              If you're reading this, it means you’ve reached the end of a
+              little adventure I made just for you—filled with laughs, quizzes,
+              sparkles, and a sprinkle of magic. Just like our love. Four months
+              may not seem like a long time to the world, but to me, it holds a
+              lifetime of memories. It all began at a simple Achcharu stall at
+              NSBM... Who would've thought that spicy mangoes would lead me to
+              the sweetest girl in the universe? That moment—your smile, your
+              laugh, your whole vibe—is forever etched in my heart. I knew then,
+              and I know now, that you are my Rapunzel. Not just because of how
+              beautiful you are, but because of how you've brought color,
+              adventure, and wild magic into my life.
+            </p>
+            <p>
+              You’re everything, My Love. Literally everything. From your
+              adorable little bites to the way you snuggle into my arms, every
+              tiny thing you do makes me fall in love all over again. I love the
+              way your eyes light up when you talk about things you love, the
+              way your voice calms my storm, and the way you make me feel like
+              I’m the luckiest guy alive.
+            </p>
+            <p>
+              They say love has five languages—but what we have? It's something
+              beyond words. It’s in our inside jokes, in the way you call me out
+              when I’m being dramatic, in your playful chaos and soft cuddles.
+              It’s the way we laugh until we can’t breathe and sit in silence
+              without it ever feeling awkward. On this International Girlfriend
+              Day, I just want to pause time for a second and let you know: You
+              are my person. My home. My once-in-a-lifetime kind of love.
+            </p>
+
+            <p>
+              You are kind, caring, chaotic in the cutest way, and incredibly
+              strong. You are the sunrise in my darkest days and the stars in my
+              happiest ones. And no matter how many adventures we go on, my
+              favorite one will always be loving you. Thank you for choosing me.
+              Thank you for being you. And thank you for every bite, every hug,
+              every kiss, and every second.
+            </p>
+            <p>With all my love, forever and always,<br />Sudu Mahaththaya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audio-click-1" src="assets/click.mp3" preload="auto"></audio>
+    <audio id="audio-click-2" src="assets/click2.mp3" preload="auto"></audio>
+    <audio id="audio-success" src="assets/success.mp3" preload="auto"></audio>
+    <audio id="audio-error" src="assets/error.mp3" preload="auto"></audio>
+    <audio id="audio-flip" src="assets/flip.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
